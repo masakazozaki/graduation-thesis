@@ -1,21 +1,19 @@
 
 \begin{jabstract}
 
-人々にとって身近なサービスがオンライン化されるにつれ，誰にとっても使いやすいシステムを設計する重要性が指摘されている．近年では，機能性よりもむしろ使いやすさや体験を広告する製品も見られ，UXの向上がビジネスに直結する課題となっている．使いやすいシステムを設計するには，実ユーザに対するユーザテストによってUXを評価し，製品の改善に繋げるサイクルが重要である．さらに，子供から高齢者まで利用者層が広がることで想定すべきユーザの種類は多くなりユーザテストはより困難になる．そもそも，UX評価を行っているソフトウェア開発企業は少なく，行っていたとしても評価した結果が製品の改善に繋がっているケースがほとんど無いと言われている．
+スマートフォンやパーソナルコンピュータの急激な普及につれ，様々な応用ソフト(アプリケーション)が開発され人々が毎日利用している．近年ではアプリケーション開発において十分な開発時間，人員，技術が確保することが難しく質の担保されたアプリケーションを設計し開発することが難しくなっている．そして個人開発者，スタートアップ企業，アイディアはあるが実装する力のない個人などではさらにこれを行うことが難しくなる．
 
-そこで本研究では，現在は大規模な開発でしか行われていないユーザテストの導入ハードルを下げ普及させるために，UX評価や統計処理についての専門的な知識が無くても容易にユーザテストを行いシステムの問題点を発見できるようにするシステムの開発を行った．テストユーザの行動や生理的反応に基づく評価指標は確立された手法が無いため普及していないものの，分析の自動化と相性が良いため手法さえ確立できれば容易なユーザテスト手法になり得る．そこで簡便であり高精度に測定できる可能性のある，容積脈波のカオス揺らぎからストレスを測定する技術を応用し，新たなUX指標を提案し有用性を明らかにした．
+その流れに伴い「ノーコード」と呼ばれるプログラミングやコンピュータサイエンスに精通していない人でも簡単にアプリケーションを開発できるサービスが登場した．しかしながら現在のノーコードにおいてもアプリケーションのユーザインタフェースデザインはユーザが行うか，テンプレートを利用する他ないためユーザインタフェースに精通していないユーザでは自由度の高く質の担保されたユーザインタフェースのアプリケーションを開発するのは困難である．
 
-また，UXの概念では時間変化を考慮することが重要である．これまでに黒須のUXグラフなどUXの時間変化を記述する方法が提案されてきたが，使用前，使用後，習熟後までの数週間から数ヶ月レベルの期間で大まかに示すものだった．本研究では，シーケンシャルにデータを取得できる生理的反応を指標として採用することでシステム使用中の数分から数時間程度の間の変化を記録し可視化するシステムを開発し有効性を明らかにした．
-
+そこで本研究では，本来大規模な開発でしか行われない専門のユーザインタフェースデザインを自動化し，ユーザインタフェースに関する専門的な知識がなくても容易にユーザインタフェースを開発できるようにするためのシステムの開発をおこなった．ユーザインタフェースの設計の方法については確立された手法はなくデザイナのセンスと経験に委ねられていた部分が多かったが，既存のユーザインタフェースを分析していくことでユーザインタフェースは画面に表示されている要素の数と種類，各要素のグルーピング，画面内での要素がもつ優先度が決定されればインターフェースを制作できるのではないかという仮説を立てた．その仮説に基づきiOS向けのネイティブアプリケーションのユーザインタフェースを専門的知識なしに制作できるシステムを開発し有用性を明らかにした．
 \end{jabstract}
 
 
 \begin{eabstract}
+With the rapid spread of smart phones and personal computers, a variety of application software have been developed and are used by people every day. In recent years, it has become difficult to secure sufficient development time, manpower, and technology to design and develop applications with guaranteed quality. This is even more difficult for individual developers, start-up companies, and individuals who have ideas but lack the ability to implement them.
 
-As more and more services become online, the importance of designing user-friendly systems has been pointed out. In recent years, some products advertise UX rather than functionality, and improving UX has become an issue directly related to business. In order to design a user-friendly system, it is important to evaluate UX through user testing on real users, and to use this cycle to improve the product. Furthermore, as the range of users expands from children to the elderly, the number of user types increases, making user testing more difficult. To begin with, it is said that few software development companies conduct UX evaluation, and even if they do, there are few cases where the evaluation results lead to product improvement.
+In response to this trend, a service called "no-code" has emerged, which allows people who are not familiar with programming or computer science to easily develop applications. However, even with the current "no-code" service, the user interface design of the application can only be done by the user or by using a template, making it difficult for users who are not familiar with user interfaces to develop applications with a high degree of freedom and guaranteed quality. Therefore, it is difficult for users who are not familiar with user interfaces to develop applications with high flexibility and quality.
 
-Therefore, in order to familiarize user testing, which is currently only conducted in large-scale effect, we developed a system that enables users to easily conduct user testing and find problems in the system without any specialized knowledge of UX evaluation or statistics. Although evaluation metrics based on the physiological reactions of test users are not widely used because there is no established method, they have the potential of the easy way because they are compatible with the automation of analysis. Therefore, we proposed a new UX evaluation method using a technology to measure stress from chaotic fluctuations of the volumetric pulse wave of a fingertip, which is simple and can be measured with high accuracy and clarified its usefulness.
-
-In addition, it is important to consider the time variation in the concept of UX. Some methods have been proposed to describe the temporal change of UX, such as Kurosu's UX graph, but they show the time period roughly from a few weeks to a few months. In this study, we developed a system to record and visualize the changes from a few minutes to a few hours during using a system by adopting physiological responses, which can be obtained sequentially, as an index and clarified its effectiveness.
+Therefore, in this research, we developed a system to automate specialized user interface design, which is normally done only in large-scale development, so that users without specialized knowledge of user interfaces can easily develop user interfaces. There is no established method for designing user interfaces, and much of the work has been left to the designer's sense and experience. However, by analyzing existing user interfaces, we hypothesized that a user interface can be created if the number and type of elements displayed on the screen, the grouping of each element, and the priority of each element within the screen are determined. Based on this hypothesis, we developed a system that can create user interfaces for native applications for iOS without specialized knowledge, and clarified its usefulness.
 
 \end{eabstract}
