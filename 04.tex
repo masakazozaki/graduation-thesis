@@ -65,7 +65,7 @@ Slider                  &0.7\\ \hline
 
 
 \subsubsection{Label}
-図\ref{fig:label_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
+図\ref{fig:label_priority}のように優先度ごとに文字の大きさ，太さを調整して実装した．優先度5以上でもこれ以上の大きさになることはなく，それ以上の優先度は配置にのみ反映されるようにした．
 
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
@@ -78,7 +78,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{TextView}
-図\ref{fig:TextView_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
+図\ref{fig:TextView_priority}のように実装した．前述のLabelから文字の太さ，大きさを少し調整すると共に，最大行の指定を優先度1の場合は2行まで, 優先度2の場合は4行まで,優先度3の場合は5行まで,優先度4の場合は8行まで,優先度5以上の場合は15行を最大とした．優先度5以上でもこれ以上の大きさになることはなく，配置のみに優先度を利用する．
 
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
@@ -91,8 +91,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{Button}
-図\ref{fig:button_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
-
+図\ref{fig:button_priority}のように実装した．優先度によって文字の大きさ，文字の太さ，タップエリアの大きさ，色等が変更されている．優先度5以上でもこれ以上の大きさになることはなく，配置のみに優先度を利用する．
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
     \begin{center}
@@ -104,7 +103,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{Toggle}
-図\ref{fig:button_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
+図\ref{fig:button_priority}のように実装した．Toggleに関しては優先度で大きさや目立たせ具合が変わることはなく，優先度は配置のみに利用する．
 
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
@@ -117,7 +116,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{Image}
-図\ref{fig:image_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
+図\ref{fig:image_priority}のように実装した．Imageは優先度/ 10の高さを持つ．表\ref{fig:image_priority}で使用しているサンプル画像が切れずに全てが映るようにしているため．6以上でも大きさが変化していない．
 
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
@@ -130,8 +129,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{Map}
-図\ref{fig:map_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
-
+図\ref{fig:map_priority}のように実装した．本要素も優先度は配置のみに利用し，目立たせ具合は変化させない．また，本要素はユーザの操作を受け付けるが，特例として画面下に持ってはいかない．
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
     \begin{center}
@@ -143,7 +141,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{DatePicker}
-図\ref{fig:datepicker_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
+図\ref{fig:datepicker_priority}のように実装した．優先度1，２では画面右下のコンパクトスタイル，優先度3ではドラムロールスタイル，4以上ではカレンダースタイルで日付を選ぶようにした．でもこれ以上の大きさになることはなく，余白として扱われる．
 
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
@@ -156,7 +154,7 @@ Slider                  &0.7\\ \hline
 \end{figure}
 
 \subsubsection{Slider}
-図\ref{fig:slider_priority}のように実装した．優先度5以上でもこれ以上の大きさになることはなく，余白として扱われる．
+図\ref{fig:slider_priority}のように実装した．優先度による見た目の変化はなく，配置のみに利用される．
 
 \begin{figure}[htbp]
   \begin{minipage}{\hsize}
@@ -170,12 +168,13 @@ Slider                  &0.7\\ \hline
 
 
 \subsection{グルーピング}
+Group
 \subsubsection{グルーピングの入れ子構造}
 
 \subsection{表示レイアウトアルゴリズム}
 
 \section{既存UIの再現}
-
+前セクションでは本システムの表示アルゴリズムの具体的なシステムの実装を説明した．本セクションでは今回開発したシステムを用い
 \section{システムの有効性についての実験}
 
 \subsection{対象と手続き}
