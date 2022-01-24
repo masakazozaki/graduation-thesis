@@ -173,9 +173,149 @@ Group
 
 \subsection{表示レイアウトアルゴリズム}
 
-\section{既存UIの再現}
-前セクションでは本システムの表示アルゴリズムの具体的なシステムの実装を説明した．本セクションでは今回開発したシステムを用い
 \section{システムの有効性についての実験}
+
+\subsection{既存UIの再現}
+前セクションでは本システムの表示アルゴリズムの具体的なシステムの実装を説明した．本セクションでは既存UIを要素，優先度，グルーピングに落とし込み，本システムを利用して再度UI構築を行う実験をおこなった．
+本実験ではSNSフィード画面(Instagram)， ログイン画面(NIKKEI Wave)，リスト画面(設定)，地図画面(Maps)についておこなった．
+\subsubsection{SNSフィード画面(Instagram)}
+図\ref{fig:instagram_screenshot}を解析し， 図\ref{fig:instagram_ViewStructure}の要素，優先度グルーピングを得ることができた．図\ref{fig:instagram_ViewStructure}の構造を複数個本システムにインプットしたところ図\ref{fig:instagram_autogen}を得ることができた．
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/instagram_screenshot.png}
+    \end{center}
+    \caption{既存のSNSフィード画面(Instagram)}
+    \label{fig:instagram_screenshot}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Instagram_ViewStructure.png}
+    \end{center}
+    \caption{既存のSNSフィード画面(Instagram)の要素，優先度，グルーピング}
+    \label{fig:instagram_ViewStructure}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Instagram_autogen.png}
+    \end{center}
+    \caption{本システムで再構築されたSNSフィード画面}
+    \label{fig:instagram_autogen}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{ログイン画面(NIKKEI Wave)}
+図\ref{fig:wave_screenshot}を解析し， 図\ref{fig:wave_ViewStructure}の要素，優先度グルーピングを得ることができた．図\ref{fig:wave_ViewStructure}の構造を複数個本システムにインプットしたところ図\ref{fig:wave_autogen}を得ることができた．
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/wave_screenshot.png}
+    \end{center}
+    \caption{既存のログイン画面(NIKKEI Wave)}
+    \label{fig:wave_screenshot}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/wave_ViewStructure.png}
+    \end{center}
+    \caption{既存のログリン画面(NIKKEI Wave)の要素，優先度，グルーピング}
+    \label{fig:wave_ViewStructure}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/wave_autogen.png}
+    \end{center}
+    \caption{本システムで再構築されたログイン画面}
+    \label{fig:wave_autogen}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{リスト画面(設定)}
+図\ref{fig:Settings_screenshot}を解析し， 図\ref{fig:Settings_ViewStructure}の要素，優先度グルーピングを得ることができた．図\ref{fig:Settings_ViewStructure}の構造を複数個本システムにインプットしたところ図\ref{fig:Settings_autogen}を得ることができた．
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Settings_screenshot.png}
+    \end{center}
+    \caption{リスト画面(Settings)}
+    \label{fig:Settings_screenshot}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Settings_ViewStructure.png}
+    \end{center}
+    \caption{リスト画面(Settings)の要素，優先度，グルーピング}
+    \label{fig:Settings_ViewStructure}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Settings_autogen.png}
+    \end{center}
+    \caption{リスト画面}
+    \label{fig:Settings_autogen}
+  \end{minipage}
+\end{figure}
+
+
+\subsubsection{地図画面(Maps)}
+図\ref{fig:Maps_screenshot}を解析し， 図\ref{fig:Maps_ViewStructure}の要素，優先度グルーピングを得ることができた．図\ref{fig:Maps_ViewStructure}の構造を複数個本システムにインプットしたところ図\ref{fig:Maps_autogen}を得ることができた．
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Maps_screenshot.png}
+    \end{center}
+    \caption{リスト画面(Maps)}
+    \label{fig:Maps_screenshot}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Maps_ViewStructure.png}
+    \end{center}
+    \caption{リスト画面(Maps)の要素，優先度，グルーピング}
+    \label{fig:Maps_ViewStructure}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/Maps_autogen.png}
+    \end{center}
+    \caption{リスト画面}
+    \label{fig:Maps_autogen}
+  \end{minipage}
+\end{figure}
+
+
+\subsection{ユーザテスト}
+普段からiOSネイティブアプリケーションの企画，設計，開発を行う14-17歳の中高生男女を対象に設計段階のアプリにおいて本システムを利用しUIの自動生成に置ける実験とアンケートを実施した．
 
 \subsection{対象と手続き}
 
