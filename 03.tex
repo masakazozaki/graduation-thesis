@@ -3,18 +3,47 @@
 
 本章では，後述のiOSネイティブアプリケーションのインタフェース自動生成システムの開発に先立ち，既存のインタフェースの分析から導きさした要素，優先度，グルーピングによりインタフェースの構築が行える法則について検討した．自動生成を行うアルゴリズムの提案行う．
 \section{既存インタフェースの分析}
-既存のiOSネイティブアプリケーションのUIの分析をおこなっていく．
-画面内でのUIは画面遷移を司り，画面内の体験には直接影響を与えないものが存在する．
-わかりやすくするために，画面遷移を司るUIとそうでないUIについて分類して考えていく．
+既存のiOSネイティブアプリケーションのUIのレイアウトの分析をおこなった．数多くのUIを分析した一部としてInstagram(図\ref{fig:instagram_analyze})． Facebook(図\ref{fig:facebook_analyze}),，日経電子版(図\ref{fig:nikkei_analyze})を例に解説する．
+分析の結果，画面内でのUIは画面遷移を司り，画面内の体験には直接影響を与えないUI(図\ref{fig:instagram_analyze}， 図\ref{fig:facebook_analyze}, 図\ref{fig:nikkei_analyze}左側スクリーンショット赤枠部分)，画面のコンテンツを表示するUIに分類した．
+
+
 \subsection{画面遷移を司るUI}
-HIGのhierarchical Navigation,
-FlatNavigation
-Content-Driven or Experience-Driven Navigation
-大体こうなってる．
+画面遷移を司るUIでは画面やアプリのタイトル，アプリ内での別機能への動線が配置されている．
+AppleがiOSアプリのデザインについて定めているガイドラインであるHuman Interface Guidelines\cite{hignavigation}では，主要な画面遷移の構造としてHierarchical Navigation(図\ref{fig:hig_hierarchical})，Flat Navigation(図\ref{fig:hig_flat})，Content-Driven or Experience-Driven Navigation(図\ref{fig:hig_experiencedriven})，Content-Driven or Experience-Driven Navigation\ref{fig:hig_experiencedriven}が挙げられており，本分析のサンプルとなったアプリケーションではFlat Navigationの中にHierarchical Navigationがあるような構造になっている．
+
+実際のSwiftUIにおける画面遷移を司るUIであるNavigationView\cite{appledevelopernavigationview}, TabView\cite{appledevelopertabview} でも画面遷移を司るUI,画面のタイトルとコンテンツは別で実装され，画面遷移を司るUIの上にコンテンツが乗る形式で実装されているため本研究ではそれに則り，自動生成手法の提案ではこのような画面遷移を司るUIは切り離し，画面のコンテンツのUIに注目した．
 
 
-今回の自動生成手法の提案ではこのような画面遷移を司るUIは切り離し，画面内のコンテンツのUIに注目して考えいく．
-実際のSwiftUIのコードでも画面遷移を司るUI,画面のタイトルとコンテンツは別で実装されて画面遷移の上にコンテンツが乗る形式になる．のでこの方針は問題ない
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/hig_hierarchical.png}
+    \end{center}
+    \caption{Hierarchical Navigation\cite{hignavigation}}
+    \label{fig:hig_hierarchical}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/hig_flat.png}
+    \end{center}
+    \caption{Flat Navigation\cite{hignavigation}}
+    \label{fig:hig_flat}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/hig_ExperienceDriven.png}
+    \end{center}
+    \caption{Content-Driven or Experience-Driven Navigation\cite{hignavigation}}
+    \label{fig:hig_experiencedriven}
+  \end{minipage}
+\end{figure}
+
 
 
 \subsection{画面の内容を表示するUI}
@@ -31,6 +60,36 @@ Content-Driven or Experience-Driven Navigation
 要素，優先度に加えて各要素同士でグループがある場合，グループを明確にする．
 以下の図では上述と同様にInstagramの画面における要素同士のグルーピングを抽出したものである．
 
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/instagram_analyze.png}
+    \end{center}
+    \caption{InstagramiOSアプリのUIの分析}
+    \label{fig:instagram_analyze}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/facebook_analyze.png}
+    \end{center}
+    \caption{facebookiOSアプリのUIの分析}
+    \label{fig:facebook_analyze}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/nikkei_analyze.png}
+    \end{center}
+    \caption{日経電子版iOSアプリのUIの分析}
+    \label{fig:nikkei_analyze}
+  \end{minipage}
+\end{figure}
 
 \section{アルゴリズムの構築}
 次にこの要素，要素同士の優先度，要素のグルーピングから1画面のUIを構成するアルゴリズムを検討した．
