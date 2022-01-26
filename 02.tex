@@ -1,57 +1,105 @@
-%軽く最後に書く．2章には持ってこない．
-\chapter{関連研究と諸概念の整理}
-\label{chap:prevresearch}
+\chapter{ノーデザイン: 要素，優先度，グルーピングの情報からのUI自動生成手法の提案}
+\label{chap:auto-gen}
 
-\section{ユーザインタフェースのデザイン手法}
-
-%なんか内容がびみょういな．知りたいのはそういうことではない
-%今UIデザインは大変だ　配置とかが大変だ
-\subsection{大規模開発に置けるユーザインタフェースデザイン}
-\subsection{個人開発に置けるユーザインタフェースデザイン}
-
-\section{ノーコードでのシステム開発}
-大規模な開発を行うリソースがない企業や専門知識をあまり持たない個人でもアプリケーションやウェブサイトを作れるように近年，ノーコードと呼ばれるサービスが登場した．ノーコードとは文字通り，コーディングを行わずにアプリケーションやウェブサイトを作れるサービスである．
-
-全体を通して，コードを書かないのでコードを書けばできることができない．
+本章では，後述のiOSネイティブアプリケーションのインタフェース自動生成システムの開発に先立ち，既存のインタフェースの分析から導きさした要素，優先度，グルーピングによりインタフェースの構築が行える法則について検討した．自動生成を行うアルゴリズムの提案行う．
+\section{既存インタフェースの分析}
+既存のiOSネイティブアプリケーションのUIのレイアウトの分析をおこなった．数多くのUIを分析した一部としてInstagram(図\ref{fig:instagram_analyze})． Facebook(図\ref{fig:facebook_analyze}),，日経電子版(図\ref{fig:nikkei_analyze})を例に解説する．
+分析の結果，画面内でのUIは画面遷移を司り，画面内の体験には直接影響を与えないUI(図\ref{fig:instagram_analyze}， 図\ref{fig:facebook_analyze}, 図\ref{fig:nikkei_analyze}左側スクリーンショット赤枠部分)，画面のコンテンツを表示するUIに分類した．
 
 
-ここでは既存のノーコードのサービスの例をいくつかあげ，特徴と課題点を挙げていく．
-\subsection{STUDIO}
-STUDIOはSTUDIO株式会社が運営する
+\subsection{画面遷移を司るUI}
+画面遷移を司るUIでは画面やアプリのタイトル，アプリ内での別機能への動線が配置されている．
+AppleがiOSアプリのデザインについて定めているガイドラインであるHuman Interface Guidelines\cite{hignavigation}では，主要な画面遷移の構造としてHierarchical Navigation(図\ref{fig:hig_hierarchical})，Flat Navigation(図\ref{fig:hig_flat})，Content-Driven or Experience-Driven Navigation(図\ref{fig:hig_experiencedriven})，Content-Driven or Experience-Driven Navigation(図\ref{fig:hig_experiencedriven})が挙げられており，本分析のサンプルとなったアプリケーションではFlat Navigationの中にHierarchical Navigationがあるような構造になっている．
 
-デザインの自由度が高いのがウリ．自由度の高いノーコードってイラレみたいで結局表層のビジュアルデザインに目を向けがち．
-web front-endの専門知識はなくても行えるが，デザインの専門知識は求められる．
-自由度の高いビジュアルデザインを売りにしているが，細かなインタラクションなどを追加でソースコードを書くことで補えないのでSTUDIOのできる範囲内で行わなければならない．
-素人ではなくある程度知識のある人が使うものであるにもかかわらず，STUDIOで制作したwebサイトは一目でわかってしまうため，コードを書けないと自分で宣言しているようなものである．
-
-\subsection{Glide}
-Google Spread Sheetsなどをデータベースとして扱い，テンプレートベースの簡易なアプリを作れる．
-スケーラビリティが終わっている
-テンプレートベース
-社内ツールの自動化や小規模のもの向けでこれで作ったものをプロダクトとして出すことは難しい
+実際のSwiftUIにおける画面遷移を司るUIであるNavigationView\cite{appledevelopernavigationview}, TabView\cite{appledevelopertabview} でも画面遷移を司るUI,画面のタイトルとコンテンツは別で実装され，画面遷移を司るUIの上にコンテンツが乗る形式で実装されているため本研究ではそれに則り，自動生成手法の提案ではこのような画面遷移を司るUIは切り離し，画面のコンテンツのUIに注目した．
 
 
-\subsection{Microsoft Power Apps}
-Glideと同じような感じであるが，若干のスケーラビリティがる．
-同じくビジネスツールなのでそれ自体をプロダクトにすることは難しい
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/hig_hierarchical.png}
+    \end{center}
+    \caption{Hierarchical Navigation\cite{hignavigation}}
+    \label{fig:hig_hierarchical}
+  \end{minipage}
+\end{figure}
 
-\section{デザインの自動化}
-デザインの専門知識がない人でもテンプレートに頼らず適切のUIを制作できるようにUIの自動生成を行う研究が行われている
-\subsection{機械学習を用いたUIの自動生成}
-機械学習使うと次同じインプットでやった時にも同じのが出てくると限らないので適していない
-\subsubsection{GANを用いた自動生成}
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/hig_flat.png}
+    \end{center}
+    \caption{Flat Navigation\cite{hignavigation}}
+    \label{fig:hig_flat}
+  \end{minipage}
+\end{figure}
 
-\subsubsection{GPT-3を用いた自動生成}
-
-\section{問題の所在}
-
-\begin{itemize}
-	\item デザインを表層のデザインだけだと誤解している %表層のデザインしかしないシステムを作るので言葉が足りない
-	\item 既存のノーコードではデザインは自分で行う又はテンプレートから選んだデザインをそのまま使用する必要がある
-	\item 機械学習を用いた自動生成では一意性が担保できない．
-	\item GANで生成したUIは画像なのでアプリとして機能しない．
-\end{itemize}
-また，スマートフォンのUIは2007年の初代iPhoneから，パソコンについては1984年の初代Macintoshから基本的なUIは全く変わっていないにもかかわらず，UIの生成の法則性の研究はあまり行われてこなかった．
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/hig_ExperienceDriven.png}
+    \end{center}
+    \caption{Content-Driven or Experience-Driven Navigation\cite{hignavigation}}
+    \label{fig:hig_experiencedriven}
+  \end{minipage}
+\end{figure}
 
 
-以上のことから表層のデザインを自動化し，専門知識のない人でも
+
+\subsection{画面の内容を表示するUI}
+前述では画面内のUIについて画面の内容を表示するUIを画面遷移を司るUIが内包していると述べた．本セクションでは画面の内容を表示するUIのレイアウトは主に画面内に表示する要素(UIパーツ),その要素同士の優先度，そして要素同士のグルーピングの3つのルールに則って構成されており，そのルールさえ示せば画面を構成できるのではないかという仮説を立てた．要素の種類が少ない限定的な機能を持つアプリケーションを開発する環境では，グルーピングと優先度からUIを自動生成する研究\cite{m-base} がされている．
+
+次にレイアウトを構成する3つのルールについて述べる．
+\subsubsection{要素}
+画面内にどの要素がいくつ存在するのかを定める必要がある．
+UI分析(図\ref{fig:instagram_analyze}， 図\ref{fig:facebook_analyze}, 図\ref{fig:nikkei_analyze})右図の灰色の長方形で要素の種類と数を表した．
+\subsubsection{優先度}
+画面内の要素の種類と個数がわかったら次に画面内でその要素の重要度を明確にする必要がある．
+例えば，同じSNSサービスであっても写真をメインとするInstagramと文字をメインとするTwitterでは文字と画像の優先度の比重が変化する．
+
+
+\subsubsection{グルーピング}
+要素，優先度に加えて各要素同士でグループがある場合，グループを明確にした．
+UI分析(図\ref{fig:instagram_analyze}， 図\ref{fig:facebook_analyze}, 図\ref{fig:nikkei_analyze})では緑枠，青枠がグルーピングを表した．
+またグルーピングの入れ子構造では要素の表示の方向を縦方向，横方向と順に切り替えることで多くのUIが実装されていた．UI分析(図\ref{fig:instagram_analyze}， 図\ref{fig:facebook_analyze}, 図\ref{fig:nikkei_analyze})では横方向配置のグループを青枠，縦方向配置のグループを緑枠で示した．多くのUIでグループの入れ子の場合，縦横が交互に入れ替わっていることがわかる．
+
+例外としてFacebook(図\ref{fig:facebook_analyze})上部のユーザが投稿を行う要素ではライブ，写真，Roomのボタンのグループが横に並んでいるが，写真を投稿するボタンとライブやRoomを始めるボタンが隣にあるのは機能がかけ離れているため，ユーザの誤解を招く．しかし使いやすさよりもFacebookがLive機能やRoom機能へのリーチを優先したためにこのような配置になっていると推測した．
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/instagram_analyze.png}
+    \end{center}
+    \caption{InstagramiOSアプリのUIの分析}
+    \label{fig:instagram_analyze}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/facebook_analyze.png}
+    \end{center}
+    \caption{facebookiOSアプリのUIの分析}
+    \label{fig:facebook_analyze}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/nikkei_analyze.png}
+    \end{center}
+    \caption{日経電子版iOSアプリのUIの分析}
+    \label{fig:nikkei_analyze}
+  \end{minipage}
+\end{figure}
+
+\section{アルゴリズムの構築}
+次にこの要素，要素同士の優先度，要素のグルーピングから1画面のUIを構成するアルゴリズムを検討した．
+要素を優先度の高い順に画面内に縦に並べることを基本とし，グループは一つの要素として配置する．また，グループの優先度はグループ内の要素の優先度の合計とした．
+しかしながら，要素の中にはユーザが操作するもの，見るだけのものがあり，操作するものは指の届きやすい画面下部に配置するのが適切である．各要素の種類に応じて別途配置係数を定め，配置係数と優先度を組み合わせて画面内に配置する場所を決定する必要がある．
+Groupが入れ子になる場合はHstack, Vstackを交互にすることによってUIを構成する．
+画面内の要素の優先度の基準を10とし，それを超える場合はスクロールするようにする．
+優先度が上がる度に文字は大きく，太く，ボタンもただの青文字ではなく，borderがついたり，塗り領域が増えたりと視覚的にも目立たせることで優先度をより効果的に扱う．
+
