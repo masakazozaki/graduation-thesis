@@ -315,8 +315,156 @@ Slider                  &0.7\\ \hline
 
 
 \subsection{ユーザテスト}
-普段からiOSネイティブアプリケーションの企画，設計，開発を行う14-17歳の中高生男女を対象に設計段階のアプリにおいて本システムを利用しUIの自動生成に置ける実験とアンケートを実施した．
-
+普段からiOSネイティブアプリケーションの企画，設計，開発を行う14-17歳の中高生男女を対象に設計段階のアプリにおいて本システムを利用しUIの自動生成の有用性を測る実験とアンケートを実施した．
+本ユーザテストでは従来のUIデザイン手法ではなく，画面内の要素，優先度，グルーピングを抽出することの難易度調査，期待するUIが自動生成されるかどうか，また優先度を編集することでの本システムとのインタラクションによるUI設計があるかを調査した．
 \subsection{対象と手続き}
+本ユーザテストではコンピュータの基本操作は理解しており，日頃からiOSネイティブアプリケーションの企画，設計，開発をおこなっている14-17歳の中高生を対象とした．
+
+被験者には事前説明として画面内の要素，優先度，グルーピングで構成できる旨の説明を行い，使用できる要素の種類一覧(表\ref{table:ui_elements})を示した．
+
+実験では白紙一枚を渡し，白紙に図\ref{fig:instagram_ViewStructure}，図\ref{fig:wave_ViewStructure}，図\ref{fig:Settings_ViewStructure}，図\ref{fig:Maps_ViewStructure}，にならった 要素，優先度，グルーピングの図示を行わせ，自動生成システムにかけ実際にUIを出力させた．
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=50mm]{img/usertest_viewstructure_1.png}
+    \end{center}
+    \caption{被験者A記入用紙}
+    \label{fig:usertest_viewstructure_1}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/usertest_autogen_1.jpeg}
+    \end{center}
+    \caption{被験者A自動生成UI}
+    \label{fig:usertest_autogen_1}
+  \end{minipage}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=50mm]{img/usertest_viewstructure_2.png}
+    \end{center}
+    \caption{被験者B記入用紙}
+    \label{fig:usertest_viewstructure_2}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/usertest_autogen_2.jpeg}
+    \end{center}
+    \caption{被験者B自動生成UI}
+    \label{fig:usertest_autogen_2}
+  \end{minipage}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=50mm]{img/usertest_viewstructure_3.png}
+    \end{center}
+    \caption{被験者C記入用紙}
+    \label{fig:usertest_viewstructure_3}
+  \end{minipage}
+\end{figure}
+
+%\begin{figure}[htbp]
+%  \begin{minipage}{\hsize}
+%    \begin{center}
+%       \includegraphics[width=100mm]{img/usertest_autogen_3.jpeg}
+%    \end{center}
+%    \caption{被験者C自動生成UI}
+%    \label{fig:usertest_autogen_3}
+%  \end{minipage}
+%\end{figure}
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=50mm]{img/usertest_viewstructure_4.png}
+    \end{center}
+    \caption{被験者D記入用紙}
+    \label{fig:usertest_viewstructure_4}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/usertest_autogen_4.jpeg}
+    \end{center}
+    \caption{被験者D自動生成UI}
+    \label{fig:usertest_autogen_4}
+  \end{minipage}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=50mm]{img/usertest_viewstructure_5.png}
+    \end{center}
+    \caption{被験者E記入用紙}
+    \label{fig:usertest_viewstructure_5}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/usertest_autogen_5-1.jpeg}
+    \end{center}
+    \caption{被験者E自動生成UI}
+    \label{fig:usertest_autogen_5-1}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{minipage}{\hsize}
+    \begin{center}
+       \includegraphics[width=100mm]{img/usertest_autogen_5-2.jpeg}
+    \end{center}
+    \caption{被験者E自動生成UI-2}
+    \label{fig:usertest_autogen_5-2}
+  \end{minipage}
+\end{figure}
+
+
 
 \subsection{結果と考察}
+本実験を通して，既存UIを本システムで再現すること，ある程度アプリ開発について知識のある人なら本システムを利用してUIを生成することが可能であることが明らかになった．またアンケート結果によると(付録A, Bを参照)UIの生成を自動化することで効率化が図れることがわかった．
+
+また普段デザインの見栄えを考えるあまりUIとしての本来の目的を見失いがちになるとの意見もあった．本システムはそのような場合にでも本来の目的に向かって進むことができるツールになり得る．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
