@@ -6,9 +6,31 @@
 
 本システムの設計は以下のとおりである．
 \section{システムの設計・開発}
+
+本システムではSwiftプログラミング言語を用いて開発を行った．
 要素，優先度，グルーピング情報からの画面のコンテンツUI自動生成システムのプロトタイプとして主要な部分のみを実装した．本研究において画面のコンテンツUIとは実際画面に表示されるUIのうち，画面遷移を司どるUI，画面のタイトル表示を除いたものを指す．
 
 本研究のUI自動生成において重要なのは画面内の要素，優先度，グルーピング，の情報のみでUIを自動生成できることである．この点を実現するためのシステムを開発した．
+
+本システムへの入力データは要素，優先度をもつ構造体の配列とし，出力はSwiftUIのソースコードとし，画面一枚分のSwiftUI Viewを出力する．後述の図\ref{fig:instagram_ViewStructure}の要素，優先度，グルーピングのインプットデータは以下となる．
+
+\begin{lstlisting}
+GroupElement(viewElements: [
+            GroupElement(viewElements: [
+                ViewElement(ui: .Image, priority: 1),
+                ViewElement(ui: .Label, priority: 1),
+                ViewElement(ui: .Button, priority: 1),
+            ]),
+            ViewElement(ui: .Image, priority: 4),
+            GroupElement(viewElements: [
+                ViewElement(ui: .Button, priority: 1),
+                ViewElement(ui: .Button, priority: 1),
+                ViewElement(ui: .Button, priority: 1),
+                ViewElement(ui: .Button, priority: 1),                    
+            ]),
+            ViewElement(ui: .TextView, priority: 2)
+            ], direction: .vertical)
+\end{lstlisting}
 
 本システムで利用できる要素(UIパーツ)の名称と機能は以下(表\ref{table:ui_elements})とする．名称の命名に関しては基本的にSwiftUIでの名称を使用するが，SwiftUIではテキスト表示の行数による名称の違いがないため独自に一行表示をLabel, 複数行表示をTextViewとした．
 \begin{landscape}
@@ -168,10 +190,11 @@ Slider                  &0.7\\ \hline
 
 
 \subsection{グルーピング}
-グルーピングでは
+グルーピングでは前述の要素をグループに入れて表示する．グループ内の要素の優先度から自己の優先度を決定する実装にした．
+グループの表示は基本的にはroot Group(自分が他のグループの中の要素ではないグループ)が横方向に配置している．しかしながらそこには横方向には適さないUIの場合もあるので縦方向に指定するオプションも用意した．
 \subsubsection{グルーピングの入れ子構造}
-
-\subsection{表示レイアウトアルゴリズム}
+グルーピングの入れ子構造では親グループの方向が縦ならば横，横なら縦と，縦方向の配置と横方向の表示を交互で表示するように実装した．前述同様，強制的にグループの方向を決めることもできる．
+\subsection{本システムの}
 
 \section{システムの有効性についての実験}
 
@@ -318,7 +341,7 @@ Slider                  &0.7\\ \hline
 普段からiOSネイティブアプリケーションの企画，設計，開発を行う14-17歳の中高生男女を対象に設計段階のアプリにおいて本システムを利用しUIの自動生成の有用性を測る実験とアンケートを実施した．
 本ユーザテストでは従来のUIデザイン手法ではなく，画面内の要素，優先度，グルーピングを抽出することの難易度調査，期待するUIが自動生成されるかどうか，また優先度を編集することでの本システムとのインタラクションによるUI設計があるかを調査した．
 \subsection{対象と手続き}
-本ユーザテストではコンピュータの基本操作は理解しており，日頃からiOSネイティブアプリケーションの企画，設計，開発をおこなっている14-17歳の中高生を対象とした．
+本ユーザテストではコンピュータの基本操作は理解しており，日頃からiOSネイティブアプリケーションの企画，設計，開発をおこなっている中高生を対象とした．
 
 被験者には事前説明として画面内の要素，優先度，グルーピングで構成できる旨の説明を行い，使用できる要素の種類一覧(表\ref{table:ui_elements})を示した．
 
